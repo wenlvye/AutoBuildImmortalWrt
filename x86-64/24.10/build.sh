@@ -28,8 +28,7 @@ PACKAGES="$PACKAGES luci-app-cloudflared"
 PACKAGES="$PACKAGES luci-app-uhttpd"
 PACKAGES="$PACKAGES luci-app-udpxy"
 PACKAGES="$PACKAGES luci-app-socat"
-PACKAGES="$PACKAGES luci-app-adguardhome"
-PACKAGES="$PACKAGES luci-app-socat"
+
 
 
 # 构建镜像
