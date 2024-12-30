@@ -30,7 +30,10 @@ PACKAGES="$PACKAGES luci-app-udpxy"
 PACKAGES="$PACKAGES luci-app-socat"
 PACKAGES="$PACKAGES luci-app-ssr-plus"
 PACKAGES="$PACKAGES luci-app-v2ray-server"
-PACKAGES="$PACKAGES luci-app-socat"
+PACKAGES="$PACKAGES luci-app-socat" 
+
+
+
 # 构建镜像
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Building image with the following packages:"
 echo "$PACKAGES"
