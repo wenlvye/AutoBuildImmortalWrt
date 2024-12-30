@@ -23,6 +23,14 @@ PACKAGES="$PACKAGES luci-i18n-homeproxy-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
 PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
 PACKAGES="$PACKAGES luci-app-zerotier"
+PACKAGES="$PACKAGES luci-app-smartdns"
+PACKAGES="$PACKAGES luci-app-cloudflared"
+PACKAGES="$PACKAGES luci-app-uhttpd"
+PACKAGES="$PACKAGES luci-app-udpxy"
+PACKAGES="$PACKAGES luci-app-socat"
+PACKAGES="$PACKAGES luci-app-ssr-plus"
+PACKAGES="$PACKAGES luci-app-v2ray-server"
+PACKAGES="$PACKAGES luci-app-socat"
 
 
 # 构建镜像
