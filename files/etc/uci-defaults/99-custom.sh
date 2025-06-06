@@ -11,14 +11,6 @@ uci add dhcp domain
 uci set "dhcp.@domain[-1].name=time.android.com"
 uci set "dhcp.@domain[-1].ip=203.107.6.88"
 
-# 检查配置文件pppoe-settings是否存在 该文件由build.sh动态生成
-SETTINGS_FILE="/etc/config/pppoe-settings"
-if [ ! -f "$SETTINGS_FILE" ]; then
-    echo "PPPoE settings file not found. Skipping." >> $LOGFILE
-else
-   # 读取pppoe信息($enable_pppoe、$pppoe_account、$pppoe_password)
-   . "$SETTINGS_FILE"
-fi
 
 # 计算网卡数量
 count=0
@@ -48,8 +40,6 @@ elif [ "$count" -gt 1 ]; then
    uci set network.wan=interface
    # 提取第一个接口作为WAN
    uci set network.wan.device="$wan_ifname"
-   # WAN接口默认DHCP
-   uci set network.wan.proto='dhcp'
    # 设置WAN6绑定网口eth0
    uci set network.wan6=interface
    uci set network.wan6.device="$wan_ifname"
@@ -73,26 +63,7 @@ elif [ "$count" -gt 1 ]; then
    # 大家不能胡乱修改哦 比如有人修改为192.168.100.55 这是错误的理解 这个项目不能提前设置旁路地址
    # 旁路的设置分2类情况,情况一是单网口的设备,默认是DHCP模式，ip应该在上一级路由器里查看。之后进入web页在设置旁路。
    # 情况二旁路由如果是多网口设备，也应当用网关访问网页后，在自行在web网页里设置。总之大家不能直接在代码里修改旁路网关。千万不要徒增bug啦。
-   uci set network.lan.ipaddr='192.168.100.1'
-   uci set network.lan.netmask='255.255.255.0'
-   echo "set 192.168.100.1 at $(date)" >> $LOGFILE
-   # 判断是否启用 PPPoE
-   echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
-   if [ "$enable_pppoe" = "yes" ]; then
-      echo "PPPoE is enabled at $(date)" >> $LOGFILE
-      # 设置ipv4宽带拨号信息
-      uci set network.wan.proto='pppoe'
-      uci set network.wan.username=$pppoe_account
-      uci set network.wan.password=$pppoe_password
-      uci set network.wan.peerdns='1'
-      uci set network.wan.auto='1'
-      # 设置ipv6 默认不配置协议
-      uci set network.wan6.proto='none'
-      echo "PPPoE configuration completed successfully." >> $LOGFILE
-   else
-      echo "PPPoE is not enabled. Skipping configuration." >> $LOGFILE
-   fi
-fi
+
 
 # 添加docker zone
 uci add firewall zone
@@ -123,10 +94,5 @@ uci delete ttyd.@ttyd[0].interface
 # 设置所有网口可连接 SSH
 uci set dropbear.@dropbear[0].Interface=''
 uci commit
-
-# 设置编译作者信息
-FILE_PATH="/etc/openwrt_release"
-NEW_DESCRIPTION="Compiled by wukongdaily"
-sed -i "s/DISTRIB_DESCRIPTION='[^']*'/DISTRIB_DESCRIPTION='$NEW_DESCRIPTION'/" "$FILE_PATH"
 
 exit 0
