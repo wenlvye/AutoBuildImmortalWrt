@@ -55,6 +55,21 @@ PACKAGES="$PACKAGES luci-i18n-ttyd-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
 # 文件管理器
 PACKAGES="$PACKAGES luci-i18n-filemanager-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-ddns-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-zerotier-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-smartdns-zh-cn"
+PACKAGES="$PACKAGES ddns-scripts-cloudflare"
+PACKAGES="$PACKAGES luci-i18n-uhttpd-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-udpxy-zh-cn"
+PACKAGES="$PACKAGES miniupnpc"
+PACKAGES="$PACKAGES openssl-util"
+PACKAGES="$PACKAGES kmod-nft-socket"
+PACKAGES="$PACKAGES kmod-nft-tproxy"
+PACKAGES="$PACKAGES luci-i18n-firewall-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-filebrowser-zh-cn"
+PACKAGES="$PACKAGES luci-app-openclash"
+PACKAGES="$PACKAGES luci-app-passwall"
+
 
 
 # 第三方软件包 合并
