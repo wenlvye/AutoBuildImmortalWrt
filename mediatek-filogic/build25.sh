@@ -67,9 +67,6 @@ PACKAGES="$PACKAGES kmod-nft-socket"
 PACKAGES="$PACKAGES kmod-nft-tproxy"
 PACKAGES="$PACKAGES luci-i18n-firewall-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-filebrowser-zh-cn"
-PACKAGES="$PACKAGES luci-app-openclash"
-PACKAGES="$PACKAGES luci-app-passwall"
-PACKAGES="$PACKAGES luci-i18n-cloudflared-zh-cn"
 
 
 
